@@ -3,15 +3,12 @@ d = 2
 e = 3
 f = 4
 def change(a, b):
-    flag = a
-    a = b
-    b = flag
-    print(a, b)
+    return b, a
 
+print(c, d, e, f)
 
-change(c, d)
-print(c, d)
-change(e, f)
-change(d, e)
+c,d = change(c, d)
+e,f = change(e, f)
+d,e = change(d, e)
 
 print(c, d, e, f)

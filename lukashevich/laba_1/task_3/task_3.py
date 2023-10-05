@@ -1,8 +1,9 @@
-def IsOddNumber(N):
-    if N >= 0 and (N % 1 == 0):
+import random
+def IsPositiveNumber(N):
+    if N>0:
         return True
     else:
         return False
-
-k = float(input("N = "))
-print(IsOddNumber(k))
+for i in range(5):
+    r = random.randint(-10,10)
+    print(r, "-", IsPositiveNumber(r))

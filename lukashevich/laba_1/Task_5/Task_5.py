@@ -15,6 +15,9 @@ class MathProblemTrainer:
         return self.status
 
 class MultiplicationTrainer(MathProblemTrainer):
+
+    def __init__(self, answer):
+        super(answer)
     def __init__(self, par1, par2):
         self.par1 = par1
         self.par2 = par2
