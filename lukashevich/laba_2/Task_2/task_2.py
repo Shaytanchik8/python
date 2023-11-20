@@ -3,7 +3,8 @@ class Library:
         self.repository = {}
 
     def add_book(self,title,author):
-        self.repository[title]={"title": title,"author":author}
+        self.repository[title] = {"title": title, "author": author}
+
     def find_book_by_author(self,author):
         by_author=[book for book in self.repository.values() if book["author"]==author]
         if len(by_author)>0:
@@ -20,8 +21,6 @@ class Library:
             del self.repository[title]
         else:
             print(f"Book named {title} wasn't found")
-
-
 
 
 
