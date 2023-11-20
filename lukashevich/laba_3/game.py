@@ -1,3 +1,18 @@
+'''
+Игра 1024
+1. Создания общего поля
+2. разделения на ячейки
+3. Генерация двух "2"
+    -заливка
+    -отрисовка границ как но фоне
+    -измениня посередине значения
+4. Обработка дейсвия:
+            в зависимостти от того какое действие выполняется,
+            определяется текущии(двигаем) и крайнии(куда двигаем) ячейки
+            1. СЛИВАЕМ, если значения текущей и крайней равны и текущее ячейка не новая
+            2. Передвигаем текущую на индекс меньше, чем крайней
+
+'''
 import pygame
 
 pygame.init()
@@ -8,12 +23,11 @@ pygame.font.init()
 from Square import *
 import random
 
-
 class Game:
     def __init__(self):
         self.width = 400  #ширина
         self.height = 500  #высота
-        self.w = 100
+        self.w = 100 #ширина ячейки
         self.fps = 15
         self.screen = pygame.display.set_mode((self.width, self.height)) #дисплей
         self.logo = pygame.image.load('assets/Logo.ico')  #лого
@@ -21,9 +35,9 @@ class Game:
         self.font_24 = pygame.font.Font('assets/ClearSans.ttf', 24) #шрифт квадратов
         self.clak = pygame.mixer.music.load('assets/clak.wav')  #звук на передвичжение
         self.grid = []  #матрица
-        self.score = 0  #счёт
-        self.highscore = 0
-        self.lost = False
+        self.score = 0  #счёт ячейкм
+        self.highscore = 0 #общий счет
+        self.lost = False  #состояние игры (если TRUE, то проигрыш)
 
         pygame.display.set_caption('1024 in python')
         pygame.display.set_icon(self.logo)
@@ -38,8 +52,8 @@ class Game:
             moved_list = []  # Vector of booleans that
             clock.tick(self.fps)
             # TODO implement highscore
-            score_text = self.font_38.render('Score:', True, TEXT_COLOR1)
-            points_text = self.font_38.render(str(self.score), True, TEXT_COLOR1)
+            score_text = self.font_38.render('Score:', True, TEXT_COLOR1)  #текст общего счета
+            points_text = self.font_38.render(str(self.score), True, TEXT_COLOR1)  #текст ячейки
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     run = False
@@ -69,7 +83,6 @@ class Game:
                             # Только если переместили ячейки можно добавлять новый элемент 2
                             if True in moved_list:
                                 self.random2()
-
                             # При каждом нажатии проверяем, не проиграли ли.
                             self.check_lost()
 
